@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
@@ -16,6 +16,16 @@ export class IngredientsController {
   findAll() {
     return this.ingredientsService.findAll();
   }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateIngredientDto: UpdateIngredientDto) {
+    return this.ingredientsService.update(+id, updateIngredientDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.ingredientsService.remove(+id);
+  }
 }
 
 // Métoodos que se podrían incluir más adelante :)
@@ -30,8 +40,4 @@ export class IngredientsController {
     return this.ingredientsService.update(+id, updateIngredientDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ingredientsService.remove(+id);
-  }
 */
