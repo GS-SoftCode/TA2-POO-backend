@@ -7,6 +7,8 @@ import { IngredientsModule } from './ingredients/ingredients.module';
 import { Ingredient } from './ingredients/entities/ingredient.entity';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { IngredientHistory } from './ingredients/entities/ingredient-history.entity';
+
 
 @Module({
   imports: [
@@ -17,13 +19,12 @@ import { AppService } from './app.service';
       username: 'postgres',
       password: 'annieraptor',
       database: 'roles_db',
-      entities: [User, Ingredient],
+      entities: [User, Ingredient, IngredientHistory],
       synchronize: true, 
     }),
     UsersModule,
     AuthModule,
     IngredientsModule,
-    Ingredient
   ],
   controllers: [AppController],
   providers: [AppService],

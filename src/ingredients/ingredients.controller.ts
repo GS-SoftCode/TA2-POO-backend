@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/
 import { IngredientsService } from './ingredients.service';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
+import { Query } from '@nestjs/common';
 
 @Controller('ingredients')
 export class IngredientsController {
@@ -13,8 +14,13 @@ export class IngredientsController {
   }
 
   @Get()
-  findAll() {
-    return this.ingredientsService.findAll();
+  async findAll(@Query('search') search?: string) {
+    return this.ingredientsService.findAll(search);
+  }
+
+  @Get('history')
+  getHistory() {
+    return this.ingredientsService.getHistory();
   }
 
   @Put(':id')
@@ -28,7 +34,7 @@ export class IngredientsController {
   }
 }
 
-// Métoodos que se podrían incluir más adelante :)
+// Métodos que se podrían incluir más adelante :)
   /*
   @Get(':id')
   findOne(@Param('id') id: string) {

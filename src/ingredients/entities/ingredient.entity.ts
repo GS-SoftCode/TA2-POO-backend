@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Ingredient {
@@ -6,11 +6,17 @@ export class Ingredient {
     id: number;
     
     @Column()
-    nombre:string;
+    nombre: string;
 
     @Column('decimal', { precision: 10, scale: 2 })
-    precio:number;
+    precio: number;
 
     @Column({nullable: true})
-    unidad:string;
+    unidad: string;
+
+    @CreateDateColumn({ name: 'fecha_creacion' })
+    fechaCreacion: Date;
+
+    @UpdateDateColumn({ name: 'fecha_actualizacion' })
+    fechaActualizacion: Date;
 }
